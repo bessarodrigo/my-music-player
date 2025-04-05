@@ -1,6 +1,6 @@
 # 🎵 Music Player
 
-A simple and interactive web music player built with vanilla JavaScript, HTML, and CSS.  
+A simple and interactive web music player built with JavaScript, HTML, and CSS.  
 Enjoy features like play/pause, skip, shuffle, repeat, and like functionality — all in a clean and responsive interface.
 
 ## 🚀 Features
