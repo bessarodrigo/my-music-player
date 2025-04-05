@@ -5,35 +5,44 @@ const cover = document.getElementById('cover');
 const play = document.getElementById('play');
 const next = document.getElementById('next');
 const previous = document.getElementById('previous');
+const likeButton = document.getElementById('like');
 const currentProgress = document.getElementById('current-progress');
 const progressContainer = document.getElementById('progress-container');
 const shuffleButton = document.getElementById('shuffle');
 const repeatButton = document.getElementById('repeat');
 const songTime = document.getElementById('song-time');
-const totalTime = document.getElementById('time-time');
+const totalTime = document.getElementById('total-time');
 
 const weGonBeAlright = {
     songName: "We Gon' Be Alright",
     artist: "Tye Tribbett",
     file: "tye_tribett - we_gon_be_alright", 
+    liked: false
 };
 
 const everything = {
     songName: "Everything",
     artist: "Tye Tribbett",
     file: "everything - tye_tribbett", 
+    liked: false
 };
 
 const colossenses1 = {
     songName: "Colossenses 1",
     artist: "Projeto Sola",
     file: "Colossenses 1 - Projeto Sola", 
+    liked: false
 };
 
 let isPlaying = false;
 let isShuffled = false;
 let repeatOn = false;
-const originalPlaylist = [weGonBeAlright, everything, colossenses1];
+// const originalPlaylist = [weGonBeAlright, everything, colossenses1];
+const originalPlaylist = JSON.parse(localStorage.getItem('playlist')) ?? [
+  weGonBeAlright, 
+  everything, 
+  colossenses1,
+];
 let sortedPlaylist = [...originalPlaylist];
 let index = 0;
 
@@ -59,11 +68,24 @@ function playPauseDecider() {
   }
 }
 
+function likedButtonRender() {
+  if (sortedPlaylist[index].liked === false){ 
+    likeButton.querySelector('.bi').classList.remove('bi-heart');
+    likeButton.querySelector('.bi').classList.add('bi-heart-fill');
+    likeButton.classList.add('button-active');
+  } else {
+    likeButton.querySelector('.bi').classList.add('bi-heart');
+    likeButton.querySelector('.bi').classList.remove('bi-heart-fill');
+    likeButton.classList.remove('button-active');
+  }
+}
+
 function initializeSong() {
-    cover.src = `images/${sortedPlaylist[index].file}.jpg`;
-    song.src = `songs/${sortedPlaylist[index].file}.mp3`;
+    cover.src = `assets/images/${sortedPlaylist[index].file}.jpg`;
+    song.src = `assets/songs/${sortedPlaylist[index].file}.mp3`;
     songName.innerText = sortedPlaylist[index].songName;
     bandName.innerText = sortedPlaylist[index].artist;
+    likedButtonRender();
 }
 
 function previousSong() {
@@ -155,6 +177,12 @@ function updateTotalTime() {
   totalTime.innerText = toHHMMSS(song.duration);
 }
 
+function likeButtonClicked() {
+  sortedPlaylist[index].liked = !sortedPlaylist[index].liked;
+  likedButtonRender();
+  localStorage.setItem('playlist', JSON.stringify(originalPlaylist));
+}
+
 initializeSong();
 
 play.addEventListener('click', playPauseDecider);
@@ -166,3 +194,4 @@ song.addEventListener('loadedmetadata', updateTotalTime);
 progressContainer.addEventListener('click', jumpTo);
 shuffleButton.addEventListener('click', shuffleButtonClicked);
 repeatButton.addEventListener('click', repeatButtonClicked);
+likeButton.addEventListener('click', likeButtonClicked);
