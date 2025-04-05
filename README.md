@@ -23,7 +23,7 @@ Enjoy features like play/pause, skip, shuffle, repeat, and like functionality �
 
 ## 📸 Preview
 
-![Music Player Screenshot](images/preview.jpg)
+![Music Player Screenshot](images/preview.png)
 
 ## 📂 Getting Started
 
