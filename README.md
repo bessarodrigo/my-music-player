@@ -23,9 +23,7 @@ Enjoy features like play/pause, skip, shuffle, repeat, and like functionality �
 
 ## 📸 Preview
 
-![Music Player Screenshot](images/preview.jpg) <!-- Replace with your own image path -->
-
-> (Optional) You can also add a GIF showing it in action using a tool like [ScreenToGif](https://www.screentogif.com/) or [LICEcap](https://www.cockos.com/licecap/)
+![Music Player Screenshot](images/preview.jpg)
 
 ## 📂 Getting Started
 
